@@ -1,8 +1,10 @@
 package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.dto.Login;
 import org.example.dto.User;
 import org.example.entity.UserEntity;
+import org.example.service.LoginService;
 import org.example.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.util.List;
 public class UserController {
 
    final UserService userService;
+   final LoginService loginService;
 
     @GetMapping("/get-all-users")
     public List<UserEntity> getAllUsers(){
@@ -23,6 +26,7 @@ public class UserController {
     @PostMapping("/add-user")
     public void addUser(@RequestBody User user){
         userService.addUser(user);
+        loginService.insertLoginData(new Login(user.getEmail(),user.getPassword()));
     }
 
     @DeleteMapping("/delete/{id}")
