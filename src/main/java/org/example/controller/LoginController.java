@@ -1,25 +1,24 @@
 package org.example.controller;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.dto.Login;
 
 import org.example.service.LoginService;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/login")
 @RequiredArgsConstructor
+@Slf4j
 public class LoginController {
 
     final LoginService loginService;
     @PostMapping("/request-login")
     public Boolean validateLogin(@RequestBody Login login){
+        log.info(login.toString());
        return loginService.validateLogin(login);
 
     }

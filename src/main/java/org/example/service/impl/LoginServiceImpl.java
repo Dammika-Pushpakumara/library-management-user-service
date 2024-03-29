@@ -23,7 +23,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Boolean validateLogin(Login login) {
-        log.info(login.toString());
+//        log.info(login.toString());
 
        return loginRepository.existsByEmailAndPassword(login.getEmail(),login.getPassword());
     }
